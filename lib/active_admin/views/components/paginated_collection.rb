@@ -135,7 +135,7 @@ module ActiveAdmin
             else;   I18n.t("active_admin.pagination.one_page", model: entries_name, n: collection.total_count)
             end
           else
-            offset = (collection.current_page - 1) * collection.limit_value
+            offset = (collection.current_page - 1) * collection.limit_value.to_i
             total  = collection.total_count
             I18n.t "active_admin.pagination.multiple",
                    model: entries_name,
@@ -146,7 +146,7 @@ module ActiveAdmin
         else
           # Do not display total count, in order to prevent a `SELECT count(*)`.
           # To do so we must not call `collection.total_pages`
-          offset = (collection.current_page - 1) * collection.limit_value
+          offset = (collection.current_page - 1) * collection.limit_value.to_i
           I18n.t "active_admin.pagination.multiple_without_total",
                  model: entries_name,
                  from: offset + 1,
